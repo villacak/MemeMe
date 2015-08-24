@@ -32,6 +32,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Memedata, may be nil
     var memeData: MemeData?
+    var selected: Int!
     var imageName: String?
     
     var appDelegate: AppDelegate!
@@ -85,6 +86,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if let tempKey = memeTabBarController!.selectedKey {
                 if tempMemes.count > 0 {
                     self.memeData = tempMemes[tempKey]
+                    self.selected = tempKey
                     self.imageSelected.image = self.memeData!.imageMemeStored
                     self.topText.text = self.memeData!.topText
                     self.bottomText.text = self.memeData!.bottomText
@@ -234,8 +236,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func save() {
         let fileName = PropertiesListUtil().getDateTimeAsString()
         memeData = MemeData(topText: self.topText.text!, bottomText: self.bottomText.text!, imageMeme: fileName, imageMemeStored: self.imageSelected.image!)
-        memeTabBarController!.memesArray.append(memeData)
-        //        (self.tabBarController as! MemeTabBarController).memesArray.append(memeData)
+        
+        if let selectedTemp = selected {
+            memeTabBarController!.memesArray[selected] = memeData
+        } else {
+            memeTabBarController!.memesArray.append(memeData)
+        }
         
         // Once the Object is saved in the array there is no need anymore to keep the variable with values
         // This also help to control the save button

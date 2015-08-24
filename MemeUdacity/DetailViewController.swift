@@ -17,7 +17,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var bottomLabelDetail: UITextField!
     
     var memeTabBarController: MemeTabBarController?
-    var tempMeme: MemeData
+    var tempMeme: MemeData?
     var selected: Int!
     
     // Meme text attributes
@@ -58,9 +58,9 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         
         self.selected = memeTabBarController!.selectedKey
         tempMeme = memeTabBarController!.memesArray[self.selected]!
-        self.imageViewDetail.image = tempMeme.imageMemeStored
-        self.topLabelDetail.text = tempMeme.topText
-        self.bottomLabelDetail.text = tempMeme.bottomText
+        self.imageViewDetail.image = tempMeme!.imageMemeStored
+        self.topLabelDetail.text = tempMeme!.topText
+        self.bottomLabelDetail.text = tempMeme!.bottomText
     }
     
     
@@ -76,6 +76,8 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func editAction(sender: UIBarButtonItem) {
+        self.tabBarController?.tabBar.hidden = false
+        self.navigationController?.setToolbarHidden(true, animated: false)
         let editor = storyboard?.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
         self.navigationController?.pushViewController(editor, animated: true)
 

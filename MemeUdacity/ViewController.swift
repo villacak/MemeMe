@@ -32,7 +32,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     ]
     
     // Memedata, may be nil
-    var memeData: MemeData? = nil
+    var memeData: MemeData?
     var imageName: String?
     
     var appDelegate: AppDelegate!
@@ -84,14 +84,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func loadDataToView() {
         
-        if let tempKey = memeTabBarController!.selectedKey {
-            if let tempMemes = memeTabBarController.memesArray as [MemeData?]! {
-                memeData = tempMemes[tempKey]
-                self.imageSelected.image = memeData!.imageMemeStored
-                self.topText.text = memeData!.topText
-                self.bottomText.text = memeData!.bottomText
-                self.topText.hidden = false
-                self.bottomText.hidden = false
+        if let tempMemes = memeTabBarController.memesArray as? [MemeData!] {
+            if let tempKey = memeTabBarController!.selectedKey {
+                if tempMemes.count > 0 {
+                    self.memeData = tempMemes[tempKey]
+                    self.imageSelected.image = self.memeData!.imageMemeStored
+                    self.topText.text = self.memeData!.topText
+                    self.bottomText.text = self.memeData!.bottomText
+                    self.topText.hidden = false
+                    self.bottomText.hidden = false
+                }
             }
         }
     }
@@ -228,7 +230,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let fileName = PropertiesListUtil().getDateTimeAsString()
         memeData = MemeData(topText: self.topText.text!, bottomText: self.bottomText.text!, imageMeme: fileName, imageMemeStored: self.imageSelected.image!)
         memeTabBarController!.memesArray.append(memeData)
-//        (self.tabBarController as! MemeTabBarController).memesArray.append(memeData)
+        //        (self.tabBarController as! MemeTabBarController).memesArray.append(memeData)
         
         // Once the Object is saved in the array there is no need anymore to keep the variable with values
         // This also help to control the save button

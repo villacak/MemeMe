@@ -56,9 +56,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.topText.hidden = true
         self.bottomText.hidden = true
         self.shareButton.enabled = false
-        
-        //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "share")
-        //        self.navigationItem.rightBarButtonItem?.enabled = false
     }
     
     
@@ -93,7 +90,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     self.bottomText.text = self.memeData!.bottomText
                     self.topText.hidden = false
                     self.bottomText.hidden = false
-                    //                    self.navigationItem.rightBarButtonItem?.enabled = true
                     self.shareButton.enabled = true
                 }
             }
@@ -128,7 +124,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
             }
         }
-        //        self.navigationItem.rightBarButtonItem?.enabled = true
         self.shareButton.enabled = true
         self.presentViewController(imagePickerController, animated: true, completion: nil)
     }
@@ -245,7 +240,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Once the Object is saved in the array there is no need anymore to keep the variable with values
         // This also help to control the save button
         memeData = nil
-        //        self.navigationItem.rightBarButtonItem?.enabled = false
         self.shareButton.enabled = true
     }
     

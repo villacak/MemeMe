@@ -18,6 +18,8 @@ class PropertiesListUtil {
     let keyName: String = "memesKey"
     
     
+    // I just let those two first functions/methods as I have plans to save the data
+    // in a next release.
     /*
     * Write SWIFT Array to properties list file (plist)
     */
@@ -75,6 +77,9 @@ class PropertiesListUtil {
     }
     
     
+    /*
+     * Generate a name for the image, to be used later for persist it
+     */
     func getDateTimeAsString() -> String {
         let dateFormatter: NSDateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM_ddd_yyyy_HH:mm:ss"

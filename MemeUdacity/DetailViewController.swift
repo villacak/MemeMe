@@ -38,7 +38,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.hidden = true
-
+        
         // Set delegates
         self.topLabelDetail.delegate = self
         self.bottomLabelDetail.delegate = self
@@ -46,7 +46,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         // Set attributes to those two UITextView
         self.topLabelDetail.defaultTextAttributes = memeTextAttributes
         self.bottomLabelDetail.defaultTextAttributes = memeTextAttributes
-       
+        
         // Set aligment to center to those two UITextViews
         self.topLabelDetail.textAlignment = NSTextAlignment.Center
         self.bottomLabelDetail.textAlignment = NSTextAlignment.Center
@@ -57,10 +57,17 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
         
         
         self.selected = memeTabBarController!.selectedKey
-        tempMeme = memeTabBarController!.memesArray[self.selected]!
-        self.imageViewDetail.image = tempMeme!.imageMemeStored
-        self.topLabelDetail.text = tempMeme!.topText
-        self.bottomLabelDetail.text = tempMeme!.bottomText
+        
+        if memeTabBarController!.memesArray.count > 0 {
+            // It may contains just one meme
+            if (self.selected == nil) {
+                self.selected = 0
+            }
+            tempMeme = memeTabBarController!.memesArray[self.selected]!
+            self.imageViewDetail.image = tempMeme!.imageMemeStored
+            self.topLabelDetail.text = tempMeme!.topText
+            self.bottomLabelDetail.text = tempMeme!.bottomText
+        }
     }
     
     
@@ -77,10 +84,10 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func editAction(sender: UIBarButtonItem) {
         self.tabBarController?.tabBar.hidden = false
-        self.navigationController?.setToolbarHidden(true, animated: false)
+//        self.navigationController?.setToolbarHidden(true, animated: false)
         let editor = storyboard?.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
         self.navigationController?.pushViewController(editor, animated: true)
-
+        
     }
     
     

@@ -44,9 +44,9 @@ class MemeListUIViewController: UIViewController, UITableViewDataSource, UITable
         if self.memesArray?.count == 0 {
             self.tabBarController?.tabBar.hidden = true
             self.navigationItem.title = nil
-            self.performSegueWithIdentifier("listToEditor", sender: self)
-            let editorController = self.storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
-            
+            self.performSegueWithIdentifier("listToDetails", sender: self)
+            let editorController = self.storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
+
         }
     }
     
@@ -91,7 +91,10 @@ class MemeListUIViewController: UIViewController, UITableViewDataSource, UITable
     
     
     @IBAction func addMeme(sender: UIBarButtonItem) {
-        memeSegue()
+        self.tabBarController?.tabBar.hidden = true
+        self.navigationItem.title = nil
+        self.performSegueWithIdentifier("listToEditor", sender: self)
+        let editorController = self.storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
     }
     
     

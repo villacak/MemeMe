@@ -224,9 +224,9 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Meme Editor" id="HeA-VJ-XPT">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kq0-5W-2HP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Avr-Sb-s5D">
                             <connections>
-                                <action selector="saveAction:" destination="dq1-Ma-B6U" id="oyK-2G-vce"/>
+                                <action selector="shareAction:" destination="dq1-Ma-B6U" id="xv0-XO-C64"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -235,7 +235,7 @@
                         <outlet property="bottomText" destination="GgB-G4-R45" id="hFB-YU-o2M"/>
                         <outlet property="cameraButton" destination="RAa-hc-nLn" id="AlD-Wb-v1q"/>
                         <outlet property="imageSelected" destination="j2w-E8-sln" id="OnH-VC-rac"/>
-                        <outlet property="saveButton" destination="kq0-5W-2HP" id="aSd-4Y-rZx"/>
+                        <outlet property="shareButton" destination="Avr-Sb-s5D" id="nYl-rH-ba3"/>
                         <outlet property="toolBar" destination="k9c-Da-4ug" id="bmS-I6-UJT"/>
                         <outlet property="topText" destination="8Op-d9-VJf" id="efJ-ev-6ka"/>
                     </connections>

@@ -14,10 +14,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     // IBOutlets declaration
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var imageSelected: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    //    @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
     @IBOutlet weak var toolBar: UIToolbar!
@@ -56,9 +55,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Hide UITextView
         self.topText.hidden = true
         self.bottomText.hidden = true
+        self.shareButton.enabled = false
         
-        // Disable Save button
-        self.saveButton.enabled = false
+        //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "share")
+        //        self.navigationItem.rightBarButtonItem?.enabled = false
     }
     
     
@@ -93,6 +93,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     self.bottomText.text = self.memeData!.bottomText
                     self.topText.hidden = false
                     self.bottomText.hidden = false
+                    //                    self.navigationItem.rightBarButtonItem?.enabled = true
+                    self.shareButton.enabled = true
                 }
             }
         }
@@ -126,6 +128,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
             }
         }
+        //        self.navigationItem.rightBarButtonItem?.enabled = true
+        self.shareButton.enabled = true
         self.presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
@@ -134,14 +138,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     /*
     * Share button action
     */
-    @IBAction func shareAction(sender: UIButton) {
+    @IBAction func shareAction(sender: UIBarButtonItem) {
         let shareScreen:UIImage = generateMemedImage()
-        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [shareScreen], applicationActivities: nil)
-        let presentationController = activityViewController.popoverPresentationController
-        presentationController?.sourceView = sender
-        presentationController?.sourceRect = CGRect(origin: CGPointZero, size: CGSize(width: sender.frame.width, height: sender.frame.height))
         
-        self.presentViewController(activityViewController, animated: true, completion: nil)
+        var activityViewController = UIActivityViewController(activityItems: [shareScreen], applicationActivities: nil)
+        activityViewController.completionWithItemsHandler = completeSharingActivity
+        presentViewController(activityViewController, animated: true, completion: nil)
+     }
+    
+    
+    // when sharing activity completes save meme then dismiss this editor,
+    // returning to previous view on navigation stack.
+    private func completeSharingActivity(activityType: String!, completed: Bool, returnedItems: [AnyObject]!, activityError: NSError!) {
+        if completed {
+            self.save()
+            dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     
@@ -158,7 +170,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageSelected.contentMode = UIViewContentMode.ScaleToFill
         self.topText.hidden = false
         self.bottomText.hidden = false
-        checkSaveButton()
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -173,7 +184,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Delegate when user hit the soft key Done from keyboard, we collapse the keyboard
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        checkSaveButton()
         return true
     }
     
@@ -226,7 +236,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     
     // Save the meme, at moment just in memory
-    @IBAction func saveAction(sender: UIBarButtonItem) {
+    func save() {
         let fileName = PropertiesListUtil().getDateTimeAsString()
         memeData = MemeData(topText: self.topText.text!, bottomText: self.bottomText.text!, imageMeme: fileName, imageMemeStored: self.imageSelected.image!)
         memeTabBarController!.memesArray.append(memeData)
@@ -235,7 +245,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Once the Object is saved in the array there is no need anymore to keep the variable with values
         // This also help to control the save button
         memeData = nil
-        self.saveButton.enabled = false
+        //        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.shareButton.enabled = true
     }
     
     
@@ -256,16 +267,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.navigationController?.navigationBarHidden == false
         
         return memedImage
-    }
-    
-    
-    // Check if enable or disable the save button
-    func checkSaveButton() {
-        if (self.memeData != nil) {
-            self.saveButton.enabled = false
-        } else {
-            self.saveButton.enabled = true
-        }
-        
-    }
+    }    
 }

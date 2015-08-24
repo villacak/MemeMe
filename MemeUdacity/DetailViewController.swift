@@ -83,8 +83,7 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func editAction(sender: UIBarButtonItem) {
-        self.tabBarController?.tabBar.hidden = false
-//        self.navigationController?.setToolbarHidden(true, animated: false)
+//        self.tabBarController?.tabBar.hidden = false
         let editor = storyboard?.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
         self.navigationController?.pushViewController(editor, animated: true)
         

@@ -122,7 +122,7 @@
                     <navigationItem key="navigationItem" id="xNS-RV-hJQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="GQZ-Xp-ZDc">
                             <connections>
-                                <action selector="addMeme:" destination="Fn8-gc-EVj" id="33r-Br-dxx"/>
+                                <action selector="addMeme:" destination="Fn8-gc-EVj" id="H44-XQ-BwW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

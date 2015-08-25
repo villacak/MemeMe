@@ -26,6 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var memeData: MemeData?
     var selected: Int!
     var imageName: String?
+    var typeCall: TypeCall!
     
     var appDelegate: AppDelegate!
     var memeTabBarController: MemeTabBarController!
@@ -39,10 +40,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         appDelegate = (UIApplication.sharedApplication().delegate as! AppDelegate)
         
-        memeTabBarController = self.tabBarController as! MemeTabBarController
+        memeTabBarController = tabBarController as! MemeTabBarController
         
         var back = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "closeView")
-        self.navigationItem.leftBarButtonItem = back
+        navigationItem.leftBarButtonItem = back
         
         // Set attributes to those two UITextView
         topText.defaultTextAttributes = PropertiesListUtil().getTextFieldAttributes()
@@ -58,6 +59,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // View will appear, load some other settings just before view appear
     override func viewWillAppear(animated: Bool) {
+        tabBarController?.tabBar.hidden = false
+        
         // Set properties to FieldViews
         topText = PropertiesListUtil().getCustomSettingsForTextField(topText)
         bottomText = PropertiesListUtil().getCustomSettingsForTextField(bottomText)
@@ -65,19 +68,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Check if camera exist or not to enable the button
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         subscribeToKeyboardNotifications()
-        loadDataToView()
+        
+        if (typeCall == TypeCall.EDIT) {
+            loadDataToView()
+        } 
     }
     
     
     // Close the view - back button as cancel
     func closeView(){
-        self.navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewControllerAnimated(true)
     }
-
+    
     
     
     func loadDataToView() {
-        if let tempMemes = memeTabBarController.memesArray as? [MemeData!] {
+        if let tempMemes = memeTabBarController?.memesArray {
             if let tempKey = memeTabBarController!.selectedKey {
                 if tempMemes.count > 0 {
                     memeData = tempMemes[tempKey]
@@ -136,14 +142,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var activityViewController = UIActivityViewController(activityItems: [shareScreen], applicationActivities: nil)
         activityViewController.completionWithItemsHandler = completeSharingActivity
         presentViewController(activityViewController, animated: true, completion: nil)
-     }
+    }
     
     
     // when sharing activity completes save meme then dismiss this editor,
     // returning to previous view on navigation stack.
     private func completeSharingActivity(activityType: String!, completed: Bool, returnedItems: [AnyObject]!, activityError: NSError!) {
         if completed {
-            self.save()
+            save()
         }
     }
     
@@ -181,18 +187,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Keyboard notify notification center the keyboard will show
     func keyboardWillShow(notification: NSNotification) {
-        if (self.view.frame.origin.y >= 0 &&
+        if (view.frame.origin.y >= 0 &&
             bottomText.isFirstResponder()) {
-                self.view.frame.origin.y -= getKeyboardHeight(notification)
+                view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
     
     // Keyboard notify notification center the keyboard will hide
     func keyboardWillHide(notification: NSNotification) {
-        if (self.view.frame.origin.y <= 0 &&
+        if (view.frame.origin.y <= 0 &&
             bottomText.isFirstResponder()) {
-                self.view.frame.origin.y += getKeyboardHeight(notification)
+                view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
     
@@ -250,8 +256,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         navigationController?.navigationBarHidden == true
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        self.view.drawViewHierarchyInRect(self.view.frame,
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame,
             afterScreenUpdates: true)
         let memedImage : UIImage =
         UIGraphicsGetImageFromCurrentImageContext()

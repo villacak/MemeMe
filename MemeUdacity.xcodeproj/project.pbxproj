@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		335F2A801B8C8FE900ED3A6E /* TypeCallEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335F2A7F1B8C8FE900ED3A6E /* TypeCallEnum.swift */; };
 		3367EC961B8810B600D4E2C3 /* MemeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3367EC951B8810B600D4E2C3 /* MemeTabBarController.swift */; };
 		3391A8C51B7EF1B1004542C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391A8C41B7EF1B1004542C7 /* AppDelegate.swift */; };
 		3391A8C71B7EF1B1004542C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391A8C61B7EF1B1004542C7 /* ViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		335F2A7F1B8C8FE900ED3A6E /* TypeCallEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeCallEnum.swift; sourceTree = "<group>"; };
 		3367EC951B8810B600D4E2C3 /* MemeTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemeTabBarController.swift; sourceTree = "<group>"; };
 		3391A8BF1B7EF1B1004542C7 /* MemeUdacity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeUdacity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3391A8C31B7EF1B1004542C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				33A5E6C01B8027BE001EF46B /* Utils */,
 				33A5E6BC1B80270F001EF46B /* MemeDomain */,
 				3391A8C41B7EF1B1004542C7 /* AppDelegate.swift */,
+				335F2A7F1B8C8FE900ED3A6E /* TypeCallEnum.swift */,
 				3391A8C61B7EF1B1004542C7 /* ViewController.swift */,
 				33A5E6C51B802AA8001EF46B /* MemeListUIViewControlle.swift */,
 				33FA0BC71B816E4500348BCF /* MemeListUICollectionViewController.swift */,
@@ -262,6 +265,7 @@
 				33A5E6C21B8027CD001EF46B /* PropertiesListUtil.swift in Sources */,
 				33FA0BC61B816BCF00348BCF /* MemeUICollectionViewCell.swift in Sources */,
 				3391A8C51B7EF1B1004542C7 /* AppDelegate.swift in Sources */,
+				335F2A801B8C8FE900ED3A6E /* TypeCallEnum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

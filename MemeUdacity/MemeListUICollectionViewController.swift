@@ -68,6 +68,7 @@ class MemeListUICollectionViewController: UIViewController, UICollectionViewData
         navigationItem.title = nil
         performSegueWithIdentifier("collectionToEditor", sender: self)
         let editorController = storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
+        editorController.typeCall = TypeCall.NEW
     }
     
 }

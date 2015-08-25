@@ -22,14 +22,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var toolBar: UIToolbar!
     
     
-    // Meme text attributes
-    let memeTextAttributes = [
-        NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.whiteColor(),
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName : CGFloat(-3.0)
-    ]
-    
     // Memedata, may be nil
     var memeData: MemeData?
     var selected: Int!
@@ -49,50 +41,53 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         memeTabBarController = self.tabBarController as! MemeTabBarController
         
+        var back = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "closeView")
+        self.navigationItem.leftBarButtonItem = back
+        
         // Set attributes to those two UITextView
-        self.topText.defaultTextAttributes = memeTextAttributes
-        self.bottomText.defaultTextAttributes = memeTextAttributes
+        topText.defaultTextAttributes = PropertiesListUtil().getTextFieldAttributes()
+        bottomText.defaultTextAttributes = PropertiesListUtil().getTextFieldAttributes()
         
         // Hide UITextView
-        self.topText.hidden = true
-        self.bottomText.hidden = true
-        self.shareButton.enabled = false
+        topText.hidden = true
+        bottomText.hidden = true
+        shareButton.enabled = false
     }
     
     
     
     // View will appear, load some other settings just before view appear
     override func viewWillAppear(animated: Bool) {
-        // Set those two UITextViews to clear the text when on begin editing
-        self.topText.clearsOnBeginEditing = true
-        self.bottomText.clearsOnBeginEditing = true
-        
-        // Set aligment to center to those two UITextViews
-        self.topText.textAlignment = NSTextAlignment.Center
-        self.bottomText.textAlignment = NSTextAlignment.Center
+        // Set properties to FieldViews
+        topText = PropertiesListUtil().getCustomSettingsForTextField(topText)
+        bottomText = PropertiesListUtil().getCustomSettingsForTextField(bottomText)
         
         // Check if camera exist or not to enable the button
-        self.cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
-        self.subscribeToKeyboardNotifications()
-        
+        cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
+        subscribeToKeyboardNotifications()
         loadDataToView()
     }
     
     
+    // Close the view - back button as cancel
+    func closeView(){
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+
+    
     
     func loadDataToView() {
-        
         if let tempMemes = memeTabBarController.memesArray as? [MemeData!] {
             if let tempKey = memeTabBarController!.selectedKey {
                 if tempMemes.count > 0 {
-                    self.memeData = tempMemes[tempKey]
-                    self.selected = tempKey
-                    self.imageSelected.image = self.memeData!.imageMemeStored
-                    self.topText.text = self.memeData!.topText
-                    self.bottomText.text = self.memeData!.bottomText
-                    self.topText.hidden = false
-                    self.bottomText.hidden = false
-                    self.shareButton.enabled = true
+                    memeData = tempMemes[tempKey]
+                    selected = tempKey
+                    imageSelected.image = memeData!.imageMemeStored
+                    topText.text = memeData!.topText
+                    bottomText.text = memeData!.bottomText
+                    topText.hidden = false
+                    bottomText.hidden = false
+                    shareButton.enabled = true
                 }
             }
         }
@@ -106,7 +101,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillDisappear(animated)
         
         // Call method that remove notification
-        self.unsubscribeFromKeyboardNotifications()
+        unsubscribeFromKeyboardNotifications()
     }
     
     
@@ -126,8 +121,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
             }
         }
-        self.shareButton.enabled = true
-        self.presentViewController(imagePickerController, animated: true, completion: nil)
+        shareButton.enabled = true
+        presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
     
@@ -149,7 +144,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private func completeSharingActivity(activityType: String!, completed: Bool, returnedItems: [AnyObject]!, activityError: NSError!) {
         if completed {
             self.save()
-            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
@@ -163,17 +157,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     */
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-        self.imageSelected.image = image
-        imageSelected.contentMode = UIViewContentMode.ScaleToFill
-        self.topText.hidden = false
-        self.bottomText.hidden = false
-        self.dismissViewControllerAnimated(true, completion: nil)
+        imageSelected.image = image
+        imageSelected.contentMode = UIViewContentMode.ScaleAspectFit
+        topText.hidden = false
+        bottomText.hidden = false
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     
     // If the user cancel from the picker control we dismiss the image here
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     
@@ -188,7 +182,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Keyboard notify notification center the keyboard will show
     func keyboardWillShow(notification: NSNotification) {
         if (self.view.frame.origin.y >= 0 &&
-            self.bottomText.isFirstResponder()) {
+            bottomText.isFirstResponder()) {
                 self.view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
@@ -197,7 +191,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Keyboard notify notification center the keyboard will hide
     func keyboardWillHide(notification: NSNotification) {
         if (self.view.frame.origin.y <= 0 &&
-            self.bottomText.isFirstResponder()) {
+            bottomText.isFirstResponder()) {
                 self.view.frame.origin.y += getKeyboardHeight(notification)
         }
     }
@@ -235,7 +229,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Save the meme, at moment just in memory
     func save() {
         let fileName = PropertiesListUtil().getDateTimeAsString()
-        memeData = MemeData(topText: self.topText.text!, bottomText: self.bottomText.text!, imageMeme: fileName, imageMemeStored: self.imageSelected.image!)
+        memeData = MemeData(topText: topText.text!, bottomText: bottomText.text!, imageMeme: fileName, imageMemeStored: imageSelected.image!)
         
         if let selectedTemp = selected {
             memeTabBarController!.memesArray[selected] = memeData
@@ -246,14 +240,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Once the Object is saved in the array there is no need anymore to keep the variable with values
         // This also help to control the save button
         memeData = nil
-        self.shareButton.enabled = true
+        shareButton.enabled = true
     }
     
     
     // Generate the meme image to save as an image and to export!
     func generateMemedImage() -> UIImage {
         // Hide toolbar and navigation bar
-        self.navigationController?.navigationBarHidden == true
+        navigationController?.navigationBarHidden == true
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -264,8 +258,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
         
         // Show the toolbar
-        self.navigationController?.navigationBarHidden == false
+        navigationController?.navigationBarHidden == false
         
         return memedImage
-    }    
+    }
 }

@@ -20,23 +20,23 @@ class MemeListUICollectionViewController: UIViewController, UICollectionViewData
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.collectionView.delegate = self
-        self.collectionView.dataSource = self
-        self.memeTabBarController = self.tabBarController as! MemeTabBarController
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        memeTabBarController = tabBarController as! MemeTabBarController
 
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.hidden = false
-        self.navigationItem.title = "Memes Collection"
-        self.memesArray = memeTabBarController.memesArray
-        self.collectionView?.reloadData()
+        tabBarController?.tabBar.hidden = false
+        navigationItem.title = "Memes Collection"
+        memesArray = memeTabBarController.memesArray
+        collectionView?.reloadData()
     }
     
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.memesArray.count
+        return memesArray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -54,20 +54,20 @@ class MemeListUICollectionViewController: UIViewController, UICollectionViewData
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath:NSIndexPath)
     {
-        self.selectedKey = indexPath.row
-        memeTabBarController.selectedKey = self.selectedKey
+        selectedKey = indexPath.row
+        memeTabBarController.selectedKey = selectedKey
         
-        self.tabBarController!.tabBar.hidden = true
-        self.navigationItem.title = nil
-        self.performSegueWithIdentifier("collectionToDetails", sender: self)
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
+        tabBarController!.tabBar.hidden = true
+        navigationItem.title = nil
+        performSegueWithIdentifier("collectionToDetails", sender: self)
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
     }
     
     @IBAction func addMemesAction(sender: UIBarButtonItem) {
-        self.tabBarController?.tabBar.hidden = true
-        self.navigationItem.title = nil
-        self.performSegueWithIdentifier("collectionToEditor", sender: self)
-        let editorController = self.storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
+        tabBarController?.tabBar.hidden = true
+        navigationItem.title = nil
+        performSegueWithIdentifier("collectionToEditor", sender: self)
+        let editorController = storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
     }
     
 }

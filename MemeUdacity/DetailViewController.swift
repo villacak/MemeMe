@@ -19,61 +19,52 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     var memeTabBarController: MemeTabBarController?
     var tempMeme: MemeData?
     var selected: Int!
-    
-    // Meme text attributes
-    let memeTextAttributes = [
-        NSStrokeColorAttributeName : UIColor.blackColor(),
-        NSForegroundColorAttributeName : UIColor.whiteColor(),
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName : CGFloat(-3.0)
-    ]
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        memeTabBarController = self.tabBarController as? MemeTabBarController
+        memeTabBarController = tabBarController as? MemeTabBarController
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.hidden = true
+        tabBarController?.tabBar.hidden = true
         
         // Set delegates
-        self.topLabelDetail.delegate = self
-        self.bottomLabelDetail.delegate = self
+        topLabelDetail.delegate = self
+        bottomLabelDetail.delegate = self
         
         // Set attributes to those two UITextView
-        self.topLabelDetail.defaultTextAttributes = memeTextAttributes
-        self.bottomLabelDetail.defaultTextAttributes = memeTextAttributes
+        topLabelDetail.defaultTextAttributes = PropertiesListUtil().getTextFieldAttributes()
+        bottomLabelDetail.defaultTextAttributes = PropertiesListUtil().getTextFieldAttributes()
         
         // Set aligment to center to those two UITextViews
-        self.topLabelDetail.textAlignment = NSTextAlignment.Center
-        self.bottomLabelDetail.textAlignment = NSTextAlignment.Center
+        topLabelDetail = PropertiesListUtil().getCustomSettingsForTextField(topLabelDetail)
+        bottomLabelDetail = PropertiesListUtil().getCustomSettingsForTextField(bottomLabelDetail)
         
         // Make fields readonly
-        self.topLabelDetail.enabled = false
-        self.bottomLabelDetail.enabled = false
+        topLabelDetail.enabled = false
+        bottomLabelDetail.enabled = false
         
         
-        self.selected = memeTabBarController!.selectedKey
+        selected = memeTabBarController!.selectedKey
         
         if memeTabBarController!.memesArray.count > 0 {
             // It may contains just one meme
-            if (self.selected == nil) {
-                self.selected = 0
+            if (selected == nil) {
+                selected = 0
             }
             tempMeme = memeTabBarController!.memesArray[self.selected]!
-            self.imageViewDetail.image = tempMeme!.imageMemeStored
-            self.topLabelDetail.text = tempMeme!.topText
-            self.bottomLabelDetail.text = tempMeme!.bottomText
+            imageViewDetail.image = tempMeme!.imageMemeStored
+            topLabelDetail.text = tempMeme!.topText
+            bottomLabelDetail.text = tempMeme!.bottomText
         }
     }
     
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.hidden = false
+        tabBarController?.tabBar.hidden = false
     }
     
     
@@ -85,14 +76,14 @@ class DetailViewController: UIViewController, UITextFieldDelegate {
     @IBAction func editAction(sender: UIBarButtonItem) {
 //        self.tabBarController?.tabBar.hidden = false
         let editor = storyboard?.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
-        self.navigationController?.pushViewController(editor, animated: true)
+        navigationController?.pushViewController(editor, animated: true)
         
     }
     
     
     @IBAction func deleteEction(sender: UIBarButtonItem) {
         memeTabBarController!.memesArray.removeAtIndex(self.selected)
-        self.navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewControllerAnimated(true)
     }
     
     

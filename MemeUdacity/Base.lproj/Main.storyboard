@@ -179,10 +179,10 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="8Op-d9-VJf">
-                                <rect key="frame" x="16" y="109" width="568" height="30"/>
+                                <rect key="frame" x="16" y="109" width="568" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="bpv-EQ-Vzs"/>
+                                    <constraint firstAttribute="height" constant="44" id="bpv-EQ-Vzs"/>
                                     <constraint firstAttribute="width" constant="568" id="rDW-JV-Mqa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -192,11 +192,11 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="GgB-G4-R45">
-                                <rect key="frame" x="16" y="481" width="568" height="30"/>
+                                <rect key="frame" x="16" y="467" width="568" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="568" id="Qwk-Ld-RWa"/>
-                                    <constraint firstAttribute="height" constant="30" id="qXe-gu-g5f"/>
+                                    <constraint firstAttribute="height" constant="44" id="qXe-gu-g5f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
@@ -360,20 +360,20 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="kp7-LN-URF">
-                                <rect key="frame" x="16" y="111" width="568" height="30"/>
+                                <rect key="frame" x="16" y="111" width="568" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Jcx-bL-udn"/>
+                                    <constraint firstAttribute="height" constant="44" id="Jcx-bL-udn"/>
                                     <constraint firstAttribute="width" constant="568" id="O1J-cx-6AC"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="1np-gE-pKW">
-                                <rect key="frame" x="16" y="462" width="568" height="30"/>
+                                <rect key="frame" x="16" y="448" width="568" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="YmE-TW-cMU"/>
+                                    <constraint firstAttribute="height" constant="44" id="YmE-TW-cMU"/>
                                     <constraint firstAttribute="width" constant="568" id="f09-tR-ze7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>

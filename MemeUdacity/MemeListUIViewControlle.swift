@@ -21,32 +21,31 @@ class MemeListUIViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.memeTabBarController = self.tabBarController as! MemeTabBarController
+        tableView.delegate = self
+        tableView.dataSource = self
+        memeTabBarController = tabBarController as! MemeTabBarController
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        self.tabBarController?.tabBar.hidden = false
-        self.navigationController?.setToolbarHidden(true, animated: false)
-        self.navigationItem.title = "Memes List"
-        self.tableView.rowHeight = 200
-        self.memesArray = memeTabBarController.memesArray
-        self.selectedKey = memeTabBarController.selectedKey
-        self.tableView?.reloadData()
+        tabBarController?.tabBar.hidden = false
+        navigationController?.setToolbarHidden(true, animated: false)
+        navigationItem.title = "Memes List"
+        tableView.rowHeight = 200
+        memesArray = memeTabBarController.memesArray
+        selectedKey = memeTabBarController.selectedKey
+        tableView?.reloadData()
         memeSegue()
     }
     
     
     func memeSegue() {
-        if self.memesArray?.count == 0 {
-            self.tabBarController?.tabBar.hidden = true
-            self.navigationItem.title = nil
-            self.performSegueWithIdentifier("listToDetails", sender: self)
-            let editorController = self.storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
-
+        if memesArray?.count == 0 {
+            tabBarController?.tabBar.hidden = true
+            navigationItem.title = nil
+            performSegueWithIdentifier("listToEditor", sender: self)
+            let editorController = storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
         }
     }
     
@@ -57,7 +56,7 @@ class MemeListUIViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.memesArray.count
+        return memesArray.count
     }
     
     
@@ -82,19 +81,19 @@ class MemeListUIViewController: UIViewController, UITableViewDataSource, UITable
         self.selectedKey = indexPath.row
         memeTabBarController.selectedKey = self.selectedKey
         
-        self.tabBarController!.tabBar.hidden = true
-        self.navigationItem.title = nil
-        self.performSegueWithIdentifier("listToDetails", sender: self)
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
+        tabBarController!.tabBar.hidden = true
+        navigationItem.title = nil
+        performSegueWithIdentifier("listToDetails", sender: self)
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
     }
     
     
     
     @IBAction func addMeme(sender: UIBarButtonItem) {
-        self.tabBarController?.tabBar.hidden = true
-        self.navigationItem.title = nil
-        self.performSegueWithIdentifier("listToEditor", sender: self)
-        let editorController = self.storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
+        tabBarController?.tabBar.hidden = true
+        navigationItem.title = nil
+        performSegueWithIdentifier("listToEditor", sender: self)
+        let editorController = storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
     }
     
     

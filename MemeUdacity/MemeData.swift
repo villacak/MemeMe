@@ -8,20 +8,20 @@
 
 import UIKit
 
-class MemeData: NSObject {
+
+struct MemeData {
     
     var topText: String?
     var bottomText: String?
     var imageMeme: String?
     var imageMemeStored: UIImage
     
-    override init() {
+    init() {
         self.topText = ""
         self.bottomText = ""
         self.imageMeme = ""
         self.imageMemeStored = UIImage()
     }
-    
     
     init(topText: String, bottomText: String, imageMeme: String, imageMemeStored: UIImage) {
         self.topText = topText
@@ -29,4 +29,27 @@ class MemeData: NSObject {
         self.imageMeme = imageMeme
         self.imageMemeStored = imageMemeStored
     }
+    
 }
+//class MemeData: NSObject {
+//
+//    var topText: String?
+//    var bottomText: String?
+//    var imageMeme: String?
+//    var imageMemeStored: UIImage
+//
+//    override init() {
+//        self.topText = ""
+//        self.bottomText = ""
+//        self.imageMeme = ""
+//        self.imageMemeStored = UIImage()
+//    }
+//
+//
+//    init(topText: String, bottomText: String, imageMeme: String, imageMemeStored: UIImage) {
+//        self.topText = topText
+//        self.bottomText = bottomText
+//        self.imageMeme = imageMeme
+//        self.imageMemeStored = imageMemeStored
+//    }
+//}

@@ -23,7 +23,7 @@ class MemeListUICollectionViewController: UIViewController, UICollectionViewData
         collectionView.delegate = self
         collectionView.dataSource = self
         memeTabBarController = tabBarController as! MemeTabBarController
-
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -64,11 +64,7 @@ class MemeListUICollectionViewController: UIViewController, UICollectionViewData
     }
     
     @IBAction func addMemesAction(sender: UIBarButtonItem) {
-        tabBarController?.tabBar.hidden = true
-        navigationItem.title = nil
-        performSegueWithIdentifier("collectionToEditor", sender: self)
-        let editorController = storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
-        editorController.typeCall = TypeCall.NEW
+        PropertiesListUtil().redirectToEditorForNew(self, path: "collectionToEditor")
     }
     
 }

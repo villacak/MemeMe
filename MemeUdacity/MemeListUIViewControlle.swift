@@ -90,11 +90,7 @@ class MemeListUIViewController: UIViewController, UITableViewDataSource, UITable
     
     
     @IBAction func addMeme(sender: UIBarButtonItem) {
-        tabBarController?.tabBar.hidden = true
-        navigationItem.title = nil
-        performSegueWithIdentifier("listToEditor", sender: self)
-        let editorController = storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
-        editorController.typeCall = TypeCall.NEW
+        PropertiesListUtil().redirectToEditorForNew(self, path: "listToEditor")
     }
     
     

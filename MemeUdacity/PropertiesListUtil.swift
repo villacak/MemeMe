@@ -54,4 +54,12 @@ class PropertiesListUtil {
         return memeTextAttributes
     }
     
+    func redirectToEditorForNew(controller: UIViewController, path: String) {
+        controller.tabBarController?.tabBar.hidden = true
+        controller.navigationItem.title = nil
+        controller.performSegueWithIdentifier(path, sender: controller)
+        let editorController = controller.storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
+        editorController.typeCall = TypeCall.NEW
+    }
+    
 }

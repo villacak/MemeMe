@@ -504,7 +504,7 @@
         <image name="table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="k1L-RF-P27"/>
         <segue reference="q82-QW-UD2"/>
+        <segue reference="k1L-RF-P27"/>
     </inferredMetricsTieBreakers>
 </document>

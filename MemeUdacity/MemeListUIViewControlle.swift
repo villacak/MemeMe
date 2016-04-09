@@ -76,19 +76,6 @@ class MemeListUIViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.selectedKey = indexPath.row
-        memeTabBarController.selectedKey = self.selectedKey
-        
-        tabBarController!.tabBar.hidden = true
-        navigationItem.title = nil
-        performSegueWithIdentifier("listToDetails", sender: self)
-        storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
-    }
-    
-    
-    
     @IBAction func addMeme(sender: UIBarButtonItem) {
         PropertiesListUtil().redirectToEditorForNew(self, path: "listToEditor")
     }

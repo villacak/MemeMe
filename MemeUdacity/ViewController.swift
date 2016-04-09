@@ -15,12 +15,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // IBOutlets declaration
     @IBOutlet weak var shareButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var imageSelected: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topText: UITextField!
     @IBOutlet weak var bottomText: UITextField!
-    @IBOutlet weak var toolBar: UIToolbar!
-    
     
     // Memedata, may be nil
     var memeData: MemeData?

@@ -42,7 +42,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         memeTabBarController = tabBarController as! MemeTabBarController
         
-        var back = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "closeView")
+        let back = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.closeView))
         navigationItem.leftBarButtonItem = back
         
         // Set attributes to those two UITextView
@@ -139,8 +139,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func shareAction(sender: UIBarButtonItem) {
         let shareScreen:UIImage = generateMemedImage()
         
-        var activityViewController = UIActivityViewController(activityItems: [shareScreen], applicationActivities: nil)
-        activityViewController.completionWithItemsHandler = completeSharingActivity
+        let activityViewController = UIActivityViewController(activityItems: [shareScreen], applicationActivities: nil)
+//        activityViewController.completionWithItemsHandler = completeSharingActivity
         presentViewController(activityViewController, animated: true, completion: nil)
     }
     
@@ -161,7 +161,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     * load to the image view, close the picker, display those two UITextViews with the
     * image at the center
     */
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as! UIImage
         imageSelected.image = image
         imageSelected.contentMode = UIViewContentMode.ScaleAspectFit
@@ -215,8 +215,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     * Subscribe methods keyboardWillShow and keyboardWillHide to the notification center
     */
     func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:" , name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:" , name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)) , name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)) , name:UIKeyboardWillHideNotification, object: nil)
     }
     
     
@@ -237,7 +237,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let fileName = PropertiesListUtil().getDateTimeAsString()
         memeData = MemeData(topText: topText.text!, bottomText: bottomText.text!, imageMeme: fileName, imageMemeStored: imageSelected.image!)
         
-        if let selectedTemp = selected {
+        if let _ = selected {
             memeTabBarController!.memesArray[selected] = memeData
         } else {
             memeTabBarController!.memesArray.append(memeData)
@@ -253,7 +253,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Generate the meme image to save as an image and to export!
     func generateMemedImage() -> UIImage {
         // Hide toolbar and navigation bar
-        navigationController?.navigationBarHidden == true
+//        navigationController?.navigationBarHidden == true
         
         // Render view to an image
         UIGraphicsBeginImageContext(view.frame.size)
@@ -264,7 +264,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         UIGraphicsEndImageContext()
         
         // Show the toolbar
-        navigationController?.navigationBarHidden == false
+//        navigationController?.navigationBarHidden == false
         
         return memedImage
     }

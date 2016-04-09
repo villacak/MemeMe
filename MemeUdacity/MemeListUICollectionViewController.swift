@@ -60,7 +60,7 @@ class MemeListUICollectionViewController: UIViewController, UICollectionViewData
         tabBarController!.tabBar.hidden = true
         navigationItem.title = nil
         performSegueWithIdentifier("collectionToDetails", sender: self)
-        let detailController = storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
+        storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
     }
     
     @IBAction func addMemesAction(sender: UIBarButtonItem) {

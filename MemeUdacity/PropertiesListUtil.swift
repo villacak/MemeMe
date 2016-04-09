@@ -43,7 +43,7 @@ class PropertiesListUtil {
     /*
      * Get UI TextField Attributes
      */
-    func getTextFieldAttributes() -> [NSObject: AnyObject] {
+    func getTextFieldAttributes() -> [String: AnyObject] {
         // Meme text attributes
         let memeTextAttributes = [
             NSStrokeColorAttributeName : UIColor.blackColor(),

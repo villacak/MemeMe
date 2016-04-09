@@ -45,7 +45,7 @@ class MemeListUIViewController: UIViewController, UITableViewDataSource, UITable
             tabBarController?.tabBar.hidden = true
             navigationItem.title = nil
             performSegueWithIdentifier("listToEditor", sender: self)
-            let editorController = storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
+            storyboard!.instantiateViewControllerWithIdentifier("memeEditor")
         }
     }
     
@@ -84,7 +84,7 @@ class MemeListUIViewController: UIViewController, UITableViewDataSource, UITable
         tabBarController!.tabBar.hidden = true
         navigationItem.title = nil
         performSegueWithIdentifier("listToDetails", sender: self)
-        let detailController = storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
+        storyboard!.instantiateViewControllerWithIdentifier("detailController") as! DetailViewController
     }
     
     

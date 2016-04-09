@@ -11,12 +11,12 @@ import Foundation
 
 class PropertiesListUtil {
     
-    let fileName: String = "memes.plist"
-    let fileType: String = "plist"
-    let topKey: String = "top"
-    let bottomKey: String = "bottom"
-    let imageKey: String = "imagePath"
-    let keyName: String = "memesKey"
+    static let fileName: String = "memes.plist"
+    static let fileType: String = "plist"
+    static let topKey: String = "top"
+    static let bottomKey: String = "bottom"
+    static let imageKey: String = "imagePath"
+    static let keyName: String = "memesKey"
     
     
     /*
@@ -58,7 +58,7 @@ class PropertiesListUtil {
         controller.tabBarController?.tabBar.hidden = true
         controller.navigationItem.title = nil
         controller.performSegueWithIdentifier(path, sender: controller)
-        let editorController = controller.storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! ViewController
+        let editorController = controller.storyboard!.instantiateViewControllerWithIdentifier("memeEditor") as! MainViewController
         editorController.typeCall = TypeCall.NEW
     }
     

@@ -22,7 +22,7 @@ struct MemeData {
     // Due the change from class to struct, I had to remove those methods com Properties Util,
     // then it become deprecated, though I plan to add it back.
     var imageMeme: String?
-    var imageMemeStored: UIImage
+    var imageMemeStored: UIImage?
     
     init() {
         self.topText = ""
@@ -32,32 +32,21 @@ struct MemeData {
     }
     
     init(topText: String, bottomText: String, imageMeme: String, imageMemeStored: UIImage) {
-        self.topText = topText
-        self.bottomText = bottomText
-        self.imageMeme = imageMeme
-        self.imageMemeStored = imageMemeStored
+        if let _: String = topText {
+            self.topText = topText
+        }
+        
+        if let _: String = bottomText {
+            self.bottomText = bottomText
+        }
+        
+        if let _: String = imageMeme {
+            self.imageMeme = imageMeme
+        }
+        
+        if let _: UIImage = imageMemeStored {
+            self.imageMemeStored = imageMemeStored
+        }
     }
     
 }
-//class MemeData: NSObject {
-//
-//    var topText: String?
-//    var bottomText: String?
-//    var imageMeme: String?
-//    var imageMemeStored: UIImage
-//
-//    override init() {
-//        self.topText = ""
-//        self.bottomText = ""
-//        self.imageMeme = ""
-//        self.imageMemeStored = UIImage()
-//    }
-//
-//
-//    init(topText: String, bottomText: String, imageMeme: String, imageMemeStored: UIImage) {
-//        self.topText = topText
-//        self.bottomText = bottomText
-//        self.imageMeme = imageMeme
-//        self.imageMemeStored = imageMemeStored
-//    }
-//}

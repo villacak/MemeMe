@@ -10,7 +10,7 @@
 		335F2A801B8C8FE900ED3A6E /* TypeCallEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 335F2A7F1B8C8FE900ED3A6E /* TypeCallEnum.swift */; };
 		3367EC961B8810B600D4E2C3 /* MemeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3367EC951B8810B600D4E2C3 /* MemeTabBarController.swift */; };
 		3391A8C51B7EF1B1004542C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391A8C41B7EF1B1004542C7 /* AppDelegate.swift */; };
-		3391A8C71B7EF1B1004542C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391A8C61B7EF1B1004542C7 /* ViewController.swift */; };
+		3391A8C71B7EF1B1004542C7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3391A8C61B7EF1B1004542C7 /* MainViewController.swift */; };
 		3391A8CA1B7EF1B1004542C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3391A8C81B7EF1B1004542C7 /* Main.storyboard */; };
 		3391A8CC1B7EF1B1004542C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3391A8CB1B7EF1B1004542C7 /* Images.xcassets */; };
 		3391A8CF1B7EF1B1004542C7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3391A8CD1B7EF1B1004542C7 /* LaunchScreen.xib */; };
@@ -38,7 +38,7 @@
 		3391A8BF1B7EF1B1004542C7 /* MemeUdacity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeUdacity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3391A8C31B7EF1B1004542C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3391A8C41B7EF1B1004542C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3391A8C61B7EF1B1004542C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3391A8C61B7EF1B1004542C7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3391A8C91B7EF1B1004542C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3391A8CB1B7EF1B1004542C7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3391A8CE1B7EF1B1004542C7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -95,7 +95,7 @@
 				33A5E6BC1B80270F001EF46B /* MemeDomain */,
 				3391A8C41B7EF1B1004542C7 /* AppDelegate.swift */,
 				335F2A7F1B8C8FE900ED3A6E /* TypeCallEnum.swift */,
-				3391A8C61B7EF1B1004542C7 /* ViewController.swift */,
+				3391A8C61B7EF1B1004542C7 /* MainViewController.swift */,
 				33A5E6C51B802AA8001EF46B /* MemeListUIViewControlle.swift */,
 				3367EC951B8810B600D4E2C3 /* MemeTabBarController.swift */,
 				3391A8C81B7EF1B1004542C7 /* Main.storyboard */,
@@ -200,6 +200,7 @@
 				TargetAttributes = {
 					3391A8BE1B7EF1B1004542C7 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = AS572Y94UA;
 					};
 					3391A8D31B7EF1B1004542C7 = {
 						CreatedOnToolsVersion = 6.4;
@@ -252,7 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3367EC961B8810B600D4E2C3 /* MemeTabBarController.swift in Sources */,
-				3391A8C71B7EF1B1004542C7 /* ViewController.swift in Sources */,
+				3391A8C71B7EF1B1004542C7 /* MainViewController.swift in Sources */,
 				33A5E6BE1B802735001EF46B /* MemeData.swift in Sources */,
 				33A5E6C41B802A2E001EF46B /* MemeTableViewCell.swift in Sources */,
 				33A5E6C61B802AA8001EF46B /* MemeListUIViewControlle.swift in Sources */,
@@ -338,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -376,7 +377,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -387,10 +388,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MemeUdacity/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.udacity.meme.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -398,10 +402,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MemeUdacity/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.udacity.meme.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

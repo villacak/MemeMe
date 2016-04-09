@@ -128,10 +128,10 @@
             </objects>
             <point key="canvasLocation" x="3429" y="-357"/>
         </scene>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="jIc-iI-r2W">
             <objects>
-                <viewController storyboardIdentifier="memeEditor" hidesBottomBarWhenPushed="YES" id="dq1-Ma-B6U" customClass="ViewController" customModule="MemeUdacity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="memeEditor" hidesBottomBarWhenPushed="YES" id="dq1-Ma-B6U" customClass="MainViewController" customModule="MemeUdacity" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r1A-R7-rqK"/>
                         <viewControllerLayoutGuide type="bottom" id="nO5-vv-f5m"/>

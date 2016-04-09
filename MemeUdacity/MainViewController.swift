@@ -9,7 +9,7 @@
 import UIKit
 
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MainViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     
     
@@ -84,8 +84,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageSelected.contentMode = UIViewContentMode.ScaleAspectFit
         topText.hidden = true
         bottomText.hidden = true
-        topText.text = nil
-        bottomText.text = nil
     }
     
     
@@ -113,6 +111,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        if let _:UIImage = imageSelected.image {
+            if (topText.text != nil && bottomText.text != nil) {
+                save()
+            }
+        }
         // Call method that remove notification
         unsubscribeFromKeyboardNotifications()
     }
@@ -147,17 +150,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let shareScreen:UIImage = generateMemedImage()
         
         let activityViewController = UIActivityViewController(activityItems: [shareScreen], applicationActivities: nil)
-//        activityViewController.completionWithItemsHandler = completeSharingActivity
-        presentViewController(activityViewController, animated: true, completion: nil)
-    }
-    
-    
-    // when sharing activity completes save meme then dismiss this editor,
-    // returning to previous view on navigation stack.
-    private func completeSharingActivity(activityType: String!, completed: Bool, returnedItems: [AnyObject]!, activityError: NSError!) {
-        if completed {
-            save()
+        activityViewController.completionWithItemsHandler = {(type, completed, returnedItems, error) -> Void in
+            if completed{
+                self.save()
+            }
         }
+        presentViewController(activityViewController, animated: true, completion: nil)
     }
     
     
@@ -222,8 +220,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     * Subscribe methods keyboardWillShow and keyboardWillHide to the notification center
     */
     func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)) , name:UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)) , name:UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.keyboardWillShow(_:)) , name:UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainViewController.keyboardWillHide(_:)) , name:UIKeyboardWillHideNotification, object: nil)
     }
     
     
@@ -242,6 +240,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Save the meme, at moment just in memory
     func save() {
         let fileName = PropertiesListUtil().getDateTimeAsString()
+        
         memeData = MemeData(topText: topText.text!, bottomText: bottomText.text!, imageMeme: fileName, imageMemeStored: imageSelected.image!)
         
         if let _ = selected {

@@ -128,7 +128,7 @@
             </objects>
             <point key="canvasLocation" x="3429" y="-357"/>
         </scene>
-        <!--Meme Editor-->
+        <!--View Controller-->
         <scene sceneID="jIc-iI-r2W">
             <objects>
                 <viewController storyboardIdentifier="memeEditor" hidesBottomBarWhenPushed="YES" id="dq1-Ma-B6U" customClass="ViewController" customModule="MemeUdacity" customModuleProvider="target" sceneMemberID="viewController">
@@ -214,13 +214,17 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Meme Editor" id="HeA-VJ-XPT">
+                    <navigationItem key="navigationItem" id="HeA-VJ-XPT">
                         <barButtonItem key="leftBarButtonItem" systemItem="action" id="Avr-Sb-s5D">
                             <connections>
                                 <action selector="shareAction:" destination="dq1-Ma-B6U" id="xv0-XO-C64"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="6UN-3h-OVo"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="6UN-3h-OVo">
+                            <connections>
+                                <action selector="cancelAction:" destination="dq1-Ma-B6U" id="o8m-fP-6f9"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>

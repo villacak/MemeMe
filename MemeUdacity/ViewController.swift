@@ -42,9 +42,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         memeTabBarController = tabBarController as! MemeTabBarController
         
-        let back = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ViewController.closeView))
-        navigationItem.leftBarButtonItem = back
-        
         // Set attributes to those two UITextView
         topText.defaultTextAttributes = PropertiesListUtil().getTextFieldAttributes()
         bottomText.defaultTextAttributes = PropertiesListUtil().getTextFieldAttributes()
@@ -59,7 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // View will appear, load some other settings just before view appear
     override func viewWillAppear(animated: Bool) {
-        tabBarController?.tabBar.hidden = false
+        tabBarController?.tabBar.hidden = true
         
         // Set properties to FieldViews
         topText = PropertiesListUtil().getCustomSettingsForTextField(topText)
@@ -80,6 +77,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         navigationController?.popViewControllerAnimated(true)
     }
     
+    
+    // Clean the image and texts
+    @IBAction func cancelAction(sender: AnyObject) {
+        imageSelected.image = nil
+        imageSelected.contentMode = UIViewContentMode.ScaleAspectFit
+        topText.hidden = true
+        bottomText.hidden = true
+        topText.text = nil
+        bottomText.text = nil
+    }
     
     
     func loadDataToView() {
